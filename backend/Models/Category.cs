@@ -18,4 +18,3 @@ namespace backend.Models
         [Display(Name = "Products")]
         public ICollection<Product> Products { get; set; }
     }
-}

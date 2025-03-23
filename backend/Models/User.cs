@@ -22,11 +22,21 @@ namespace backend.Models
         [Display(Name = "Created At")]
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
+        // Foreign key to Address for Mailing Address
+        [Display(Name = "Mailing Address ID")]
+        public int? MailingAddressId { get; set; }
+
         // Navigation properties
         [Display(Name = "Orders")]
         public ICollection<Order> Orders { get; set; }
 
         [Display(Name = "Reviews")]
         public ICollection<Review> Reviews { get; set; }
+
+        [Display(Name = "Carts")]
+        public ICollection<Cart> Carts { get; set; }
+
+        [Display(Name = "Mailing Address")]
+        public Address MailingAddress { get; set; }
     }
 }
