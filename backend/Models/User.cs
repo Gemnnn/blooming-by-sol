@@ -5,17 +5,28 @@ namespace backend.Models
 {
     public class User : IdentityUser
     {
-        [Required]
-        [MaxLength(50)]
+        // First name of the user
+        [Required(ErrorMessage = "Please, enter the first name")]
+        [MaxLength(50, ErrorMessage = "First name can't be longer than 50 characters")]
+        [Display(Name = "First Name")]
         public string FirstName { get; set; }
 
-        [Required]
-        [MaxLength(50)]
+        // Last name of the user
+        [Required(ErrorMessage = "Please, enter the last name")]
+        [MaxLength(50, ErrorMessage = "Last name can't be longer than 50 characters")]
+        [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
+        // Created date of the user
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
+        [Display(Name = "Created At")]
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
+        // Navigation properties
+        [Display(Name = "Orders")]
         public ICollection<Order> Orders { get; set; }
+
+        [Display(Name = "Reviews")]
         public ICollection<Review> Reviews { get; set; }
     }
 }
