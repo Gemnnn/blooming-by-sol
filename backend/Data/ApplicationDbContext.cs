@@ -134,6 +134,19 @@ namespace backend.Data
                 .HasForeignKey(u => u.MailingAddressId)
                 .OnDelete(DeleteBehavior.Restrict);
 
+            // Address to Province and Country
+            modelBuilder.Entity<Address>()
+                .HasOne(a => a.Province)
+                .WithMany()
+                .HasForeignKey(a => a.ProvinceId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<Address>()
+                .HasOne(a => a.Country)
+                .WithMany()
+                .HasForeignKey(a => a.CountryId)
+                .OnDelete(DeleteBehavior.NoAction);
+
             // Seed roles
             var adminRole = new IdentityRole
             {

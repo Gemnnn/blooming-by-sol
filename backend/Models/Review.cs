@@ -16,7 +16,7 @@ namespace backend.Models
         // Foreign key to User
         [Required(ErrorMessage = "Please, enter the user ID")]
         [Display(Name = "User ID")]
-        public int UserId { get; set; }
+        public string UserId { get; set; }
 
         // Comment of the review
         [Required(ErrorMessage = "Please, enter the comment")]
