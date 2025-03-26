@@ -1,6 +1,8 @@
-﻿namespace backend.Services.Implementations
+﻿using backend.Services.Interfaces;
+
+namespace backend.Services.Implementations
 {
-    public class AddressService
+    public class AddressService : IAddressService
     {
     }
 }

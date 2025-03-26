@@ -1,6 +1,8 @@
-﻿namespace backend.Repositories.Implementations
+﻿using backend.Repositories.Interfaces;
+
+namespace backend.Repositories.Implementations
 {
-    public class AddressRepository
+    public class AddressRepository : IAddressRepository
     {
     }
 }
