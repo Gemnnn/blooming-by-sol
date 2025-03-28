@@ -2,3 +2,4 @@
 /backend/.vs
 /backend/bin
 backend/appsettings.json
+backend/Program.cs
