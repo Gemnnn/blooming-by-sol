@@ -3,7 +3,10 @@ using backend.Models;
 using backend.Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Google;
 
 namespace backend.Controllers
 {
@@ -14,7 +17,7 @@ namespace backend.Controllers
         private readonly IUserService _userService;
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
-        private readonly IAddressService _addressService; 
+        private readonly IAddressService _addressService;
 
         public UsersController(IUserService userService, UserManager<User> userManager, SignInManager<User> signInManager, IAddressService addressService)
         {
@@ -97,6 +100,30 @@ namespace backend.Controllers
             }
 
             return BadRequest(result.Errors);
+        }
+
+        [HttpGet("signin-google")]
+        public IActionResult SignInWithGoogle()
+        {
+            var properties = new AuthenticationProperties { RedirectUri = Url.Action("GoogleResponse") };
+            return Challenge(properties, GoogleDefaults.AuthenticationScheme);
+        }
+
+        [HttpGet("google-response")]
+        public async Task<IActionResult> GoogleResponse()
+        {
+            var result = await HttpContext.AuthenticateAsync(GoogleDefaults.AuthenticationScheme);
+            if (result?.Principal == null)
+                return BadRequest("Google authentication failed");
+
+            // Extract user information from Google claims
+            var email = result.Principal.FindFirstValue(ClaimTypes.Email);
+            var name = result.Principal.FindFirstValue(ClaimTypes.Name);
+
+            // Register or login the user
+            var token = await _userService.AuthenticateGoogleUser(email, name);
+
+            return Ok(new { Token = token });
         }
     }
 }

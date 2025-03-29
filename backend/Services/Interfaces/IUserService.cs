@@ -13,5 +13,6 @@ namespace backend.Services.Interfaces
         Task UpdateUserAsync(User user);
         Task DeleteUserAsync(string userId);
         Task<string> Authenticate(string email, string password);
+        Task<string> AuthenticateGoogleUser(string email, string name);
     }
 }
