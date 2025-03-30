@@ -15,7 +15,7 @@
   -moz-osx-font-smoothing: grayscale;
 } */
 
-a {
+/* a {
   font-weight: 500;
   color: #646cff;
   text-decoration: inherit;
@@ -28,8 +28,8 @@ body {
   margin: 0;
   display: flex;
   place-items: center;
-  /* min-width: 320px;
-  min-height: 100vh; */
+  min-width: 320px;
+  min-height: 100vh;
 } */
 
 /* h1 {
@@ -37,7 +37,7 @@ body {
   line-height: 1.1;
 } */
 
-button {
+/* button {
   border-color: #000000;
   border-radius: 8px;
   border: 10px solid;
@@ -66,4 +66,4 @@ button:focus-visible {
   button {
     background-color: #000000;
   }
-}
+} */
